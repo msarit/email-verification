@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="p-8">
       {isFormVisible && (
         <form className="w-full max-w-md mx-auto mt-8" onSubmit={handleSubmit}>
           <div className="mb-6">
