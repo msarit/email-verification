@@ -22,7 +22,7 @@ function App() {
         <form className="w-full max-w-md mx-auto mt-8" onSubmit={handleSubmit}>
           <div className="mb-6">
             <label
-              forhtml="name"
+              htmlFor="name"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
               Name
@@ -38,7 +38,7 @@ function App() {
           </div>
           <div className="mb-6">
             <label
-              forhtml="email"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900"
             >
               Email
