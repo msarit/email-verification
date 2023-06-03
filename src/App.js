@@ -18,6 +18,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (!name || !email) {
       setFormErrors("Some required fields are missing.");
       return;
