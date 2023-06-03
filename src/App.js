@@ -3,8 +3,14 @@ import EmailVerification from "./emailVerification";
 
 function App() {
   const nameField = useRef();
+  const signupBtn = useRef();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [formErrors, setFormErrors] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [isValidatorVisible, setIsValidatorVisible] = useState(false);
+
+  const VALID_EMAIL_REGEX = /\S+@\S+\.\S+/;
 
   useEffect(() => {
     nameField.current.focus();
@@ -12,6 +18,21 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!name || !email) {
+      setFormErrors("Some required fields are missing.");
+      return;
+    }
+
+    if (name.length < 3) {
+      setFormErrors("Name is too short.");
+      return;
+    }
+
+    if (!VALID_EMAIL_REGEX.test(email)) {
+      setFormErrors("Email is invalid.");
+      return;
+    }
+
     setIsFormVisible(false);
     setIsValidatorVisible(true);
   };
@@ -33,7 +54,8 @@ function App() {
               id="name"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Your name"
-              required
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div className="mb-6">
@@ -48,14 +70,19 @@ function App() {
               id="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Your email"
-              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
+          </div>
+          <div className="mb-6">
+            <p className="text-red-500 text-sm">{formErrors}</p>
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white uppercase text-lg mx-auto p-4 rounded"
+            ref={signupBtn}
+            className="bg-blue-500 hover:bg-blue-700 text-white uppercase text-lg mx-auto p-4 rounded pointer:cursor"
           >
-            Sign Up
+            sign up
           </button>
         </form>
       )}
