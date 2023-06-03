@@ -2,14 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import EmailVerification from "./emailVerification";
 
 function App() {
+  // refs
   const nameField = useRef();
   const signupBtn = useRef();
+
+  // state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [formErrors, setFormErrors] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(true);
   const [isValidatorVisible, setIsValidatorVisible] = useState(false);
 
+  // constants
   const VALID_EMAIL_REGEX = /\S+@\S+\.\S+/;
 
   useEffect(() => {
@@ -34,6 +38,7 @@ function App() {
       return;
     }
 
+    // hide form and show email verification
     setIsFormVisible(false);
     setIsValidatorVisible(true);
   };
